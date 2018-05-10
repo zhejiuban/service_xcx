@@ -1,0 +1,63 @@
+<!--pages/inspect/checkList/checkInfo/checkInfo.wxml-->
+<!-- <text>点检资产及结果详情</text> -->
+<view>
+  <view class='img_top' >
+    <image class='top_img' wx:if="{{img_url}}" src='{{img_url}}' ></image>
+     <image class='top_img' wx:else src='/images/no_img.jpg' ></image> 
+  </view>
+  
+  <view class='order_title' >设备信息详情</view> 
+  <block wx:if="{{asset_id}}" >
+    <view class='list'>
+      <text class='list_label'>点检资产：</text>
+      <text class='list_value'>{{asset_name}}</text>
+    </view>
+    <view class='list'>
+      <text class='list_label'>资产类别：</text>
+      <text class='list_value'>{{asset_category}}</text>
+    </view>
+    <view class='list'>
+      <text class='list_label'>设备型号：</text>
+      <text class='list_value'>{{spec}}</text>
+    </view>
+    <view class='list'>
+      <text class='list_label'>所在场地：</text>
+      <text class='list_value'>{{area}}</text>
+    </view>
+  </block>
+
+  <block wx:else >
+    <view class='list'>
+      <text class='list_label'>点检设备：</text>
+      <text class='list_value'>{{equipment_name}}</text>
+    </view>
+    <view class='list'>
+      <text class='list_label'>所在场地：</text>
+      <text class='list_value'>{{area}}</text>
+    </view>
+  </block>
+  
+
+
+  <!--点检记录  -->
+
+  <view class='record_list' style='margin-bottom:{{bottom}}rpx'>
+    <block wx:for="{{items}}" wx:key="property" >
+      <view class='record' catchtap='to_recordInfo' data-check-id='{{item.id}}'>
+          <text class='text1' >例行点检记录</text>
+          <text class='text2' wx:if="{{item.asset_status==0}}" >有问题，请求解决</text>
+          <text class='text2' wx:elif="{{item.asset_status==1}}" >检查正常</text>
+          <text class='text2' wx:else >有问题，已处理</text>
+          <text class='recode_info' >{{item.check_time}}  {{item.service_worker.name}}</text>
+          <image class='record_more' src='/images/more.png' ></image>
+      </view>
+    </block>
+    <view class='get_more' catchtap='to_recordList' data-asset-id='{{asset_id}}' data-equipment-id="{{equipment_id}}" >查看更多></view>
+  </view>
+
+  <block wx:if="{{status==1}}" >
+    <view class="btn-area">
+      <button class='submitBtn' catchtap='click_scan' data-check-id="{{check_id}}" data-asset-uuid="{{asset_uuid}}" data-org-id='{{org_id}}' data-equipment-uuid='{{equipment_uuid}}'>扫码添加记录</button>
+    </view>
+  </block>
+</view>

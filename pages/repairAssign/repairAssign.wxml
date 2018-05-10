@@ -1,0 +1,52 @@
+<!--pages/details/details.wxml-->
+<view style='padding-bottom:100rpx;' >
+  <view class='order_title' >工单详情</view>
+  <!-- <view class='list'>
+    <text class='list_label'>工单状态：</text>
+    <text class='list_value'>{{repair_status}}</text>
+  </view> -->
+  <view class='list'>
+    <text class='list_label'>创建时间：</text>
+    <text class='list_value'>{{create_time}}</text>
+  </view>
+  <view class='list'>
+    <text class='list_label'>报修资产：</text>
+    <text class='list_value'>{{asset_name}}</text>
+  </view>
+  <view class='list'>
+    <text class='list_label'>所在场地：</text>
+    <text class='list_value'>{{field_path}}</text>
+  </view>
+  <view class='list-bewrite'>
+    <text>故障描述：</text>
+    <text class='bewrite'>{{remarks}}</text>
+  </view>
+  <view class='list'>
+    <text class='list_label'>图片拍摄：</text>
+    <block wx:if="{{img_url.length>0}}">
+      <view wx:for="{{img_url}}" wx:key="property">
+        <image src='{{item}}' data-url='{{item}}' bindtap='imgShow' mode='aspectFill'></image>
+      </view>
+    </block>
+    <block wx:else>
+      <text style='line-height:70rpx;' >暂无图片</text>
+    </block>
+  </view>
+  <view wx:if="{{user_phone}}" class='list'>
+    <text class='list_label'>联系方式：</text>
+    <text catchtap='phoneCall' data-phone='{{user_phone}}' class='list_value'>{{user_phone}}</text>
+  </view>
+
+  <view class='section'>
+    <text class='section_title'>选择维修人员：</text>
+    <picker bindchange="bindPickerChangeWorker" value="{{index}}" range="{{worker_list}}" range-key="{{'name'}}">
+      <view class="picker">
+        {{worker_list[index].name}}
+      </view>
+    </picker>
+  </view>
+
+  <view class="btn-area">
+    <button class='submitBtn' catchtap='to_submit'>提交</button>
+  </view>
+</view>

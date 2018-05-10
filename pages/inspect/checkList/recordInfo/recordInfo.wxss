@@ -1,0 +1,55 @@
+/* pages/inspect/checkList/recordInfo/recordInfo.wxss */
+
+.top{
+  background-color: #eee;
+  text-align: center;
+  padding: 30rpx;
+  color: #333;
+}
+
+.top text{
+  display: block;
+  padding: 10rpx;
+}
+
+.text_status{
+  font-size: 42rpx;
+  font-weight: bolder;
+}
+
+.text_time{
+  font-size: 28rpx;
+}
+
+.text_name{
+  font-size: 28rpx;
+}
+
+.list{
+  padding: 20rpx;
+  font-size: 28rpx;
+  /* border: 1px solid red; */
+}
+
+.list_title{
+  display: block;
+  font-size: 34rpx;
+  padding: 20rpx 0rpx;
+}
+.item{
+  display: flex; 
+  flex-grow: row no-wrap;
+  padding: 20rpx 0rpx;
+  border-top: 1rpx solid #eee;
+}
+.lebal{
+  width: 150rpx;
+  color: #666;
+}
+.content{
+  overflow: auto;
+}
+.item image{
+  width: 100rpx;
+  height: 100rpx;
+}

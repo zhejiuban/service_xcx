@@ -1,0 +1,94 @@
+/* pages/inspect/checkList/checkRecord/checkRecord.wxss */
+
+.title {
+  width: 100%;
+  text-align: center;
+  padding: 20rpx;
+  font-size: 18px;
+}
+
+.section {
+  display: flex;
+  flex-grow: row no-wrap;
+  padding: 15rpx 40rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 28rpx;
+  position: relative;
+  color: #333;
+  border-bottom: 1rpx solid #eee;
+}
+
+
+.section_remarks {
+  display: flex;
+  flex-grow: row no-wrap;
+  padding: 15rpx 40rpx;
+  height: 160rpx;
+  font-size: 14px;
+  position: relative;
+  color: #333;
+  border-bottom: 1rpx solid #eee;
+}
+
+.section_title {
+  font-size: 28rpx;
+  width: 25%;
+}
+
+.remarks {
+  border: 1rpx solid #eee;
+  padding: 10rpx;
+  border-radius: 10rpx;
+  height: 140rpx;
+  width: 70%;
+}
+
+.btn-area {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.btn-area>button {
+  color: #fff;
+  background-color: #4898fa;
+  height: 100rpx;
+  line-height: 100rpx;
+  border: none;
+  border-radius: 0;
+}
+
+.stars {
+  position: relative;
+  width: 100%;
+  height: 100rpx;
+}
+
+.star-image {
+  position: absolute;
+  right: 0;
+  width: 100rpx;
+  height: 100rpx;
+  src: "../../images/normal.png";
+}
+
+.section .uploader_imgs{
+  width:100rpx;
+  height:100rpx;
+  padding: 0 10rpx;  
+}
+
+.uploaderBtn image {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.prompt{
+  margin-top: 15rpx; 
+  overflow:auto;
+  height:70rpx;
+  padding: 10rpx;
+  line-height: 35rpx;
+  color: #999;
+}

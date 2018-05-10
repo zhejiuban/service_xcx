@@ -1,0 +1,60 @@
+<view class='content'>
+  <view class='title'>报修详情</view>
+
+  <view class='list' wx:if="{{equipment_id}}">
+    <text class='list_label'>设备组名称：</text>
+    <text class='list_value'>{{equipment_name}}</text>
+  </view>
+
+  <view class='list'>
+    <text class='list_label'>故障设备：</text>
+    <text class='list_value'>{{asset_name}}</text>
+  </view>
+
+  <view class='list'>
+    <text class='list_label'>所在场地：</text>
+    <text class='list_value'>{{field_path}}</text>
+  </view>
+
+  <view class='list'>
+    <text class='list_label'>所属单位：</text>
+    <text class='list_value'>{{org_name}}</text>
+  </view>
+  
+  <view class="textarea_view">
+    <textarea name="remarks" disabled >{{remarks}}</textarea>
+  </view> 
+
+
+  <view class='title'>维修反馈</view>
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <view class='section'>
+      <radio-group class="radio-group" bindchange="radioChange">
+        <label class="radio">
+          <radio value="1" checked/>已修好
+        </label>
+        <label class="radio">
+          <radio value="0" />未修好
+        </label>
+      </radio-group>
+    </view>
+    <view class='section_remarks'>
+      <textarea class='remarks' name="result" placeholder='维修结果描述'></textarea>
+    </view>
+
+    <view class='section' style='border-bottom:none;'>
+      <block wx:for="{{imgs}}" wx:key="property">
+        <image src='{{item}}' class='uploader_imgs' data-src="{{item}}" bindtap='imgShow'  data-img-id="{{img_ids[index]}}" bindlongtap="longTap" bindtouchstart="touchStart" bindtouchend="touchEnd" data-index="{{index}}"></image>
+      </block>
+      <view class='uploaderBtn' bindtap='selectImg'>
+        <image wx:if="{{imgs.length<3}}" src='{{uploaderImg}}'></image>
+      </view>
+      <text class='prompt'>上传照片\n最多三张,长按删除</text>
+    </view>
+
+    <view class="btn-area">
+      <button class='submitBtn' formType="submit">提交</button>
+    </view>
+  </form>
+
+</view>

@@ -1,0 +1,19 @@
+<!--pages/inspect/checkList/recordList/recordList.wxml-->
+<text class='title' >点检记录</text>
+<view style='padding-top:120rpx'>
+<!--点检记录  -->
+  <view class='record_list' >
+    <view class='item-none'  wx:if="{{itemsLength=='0'}}" >---- 暂无数据 ----</view> 
+    <block wx:for="{{items}}" wx:key="property">
+      <view class='record' catchtap='to_recordInfo' data-check-id='{{item.id}}'>
+          <text class='text1' >例行点检记录</text>
+          <text class='text2' wx:if="{{item.asset_status==0}}" >有问题，请求解决</text>
+          <text class='text2' wx:elif="{{item.asset_status==1}}" >检查正常</text>
+          <text class='text2' wx:else >有问题，已解决</text>
+          <text class='recode_info' >{{item.check_time}} {{item.service_worker.name}}</text>
+          <image class='record_more' src='/images/more.png' ></image>
+      </view>
+    </block>
+    <view class="item-list" wx:if="{{content=='0'}}" >----Duang ~ 到底了----</view>
+  </view>
+</view>

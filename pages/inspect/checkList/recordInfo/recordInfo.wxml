@@ -1,0 +1,43 @@
+<!--pages/inspect/checkList/recordInfo/recordInfo.wxml-->
+<view class='top' >
+
+  <block wx:if="{{item.asset_status==0}}">
+    <icon type="cancel" size="50"/>
+    <text class='text_status'>有问题，请求解决</text>
+  </block>
+  <block wx:elif="{{item.asset_status==1}}">
+    <icon type="success" size="50"/>
+    <text class='text_status'>检查正常</text>
+  </block>
+
+  <block wx:else>
+    <icon type="warn" size="50"/>
+    <text class='text_status'>有问题，已解决</text>
+  </block>
+  <text class='text_record' >例行点检记录</text>
+  <text class='text_time' >{{item.check_time}}</text>
+  <text class='text_name' >{{item.service_worker.name}}</text>
+</view>
+
+<view class='list' >
+  <text class='list_title' >点检结论</text>
+  <view class='item' >
+    <view class='lebal' >所在位置：</view>
+    <view class='content' >{{item.area_name}}</view>
+  </view>
+  <view class='item' >
+    <view class='lebal' >现场照片：</view>
+    <view class='content' >
+      <block wx:for="{{item.imgs}}" wx:for-item="imgPath">
+      <image catchtap='prev_img' data-url="{{imgPath}}" src='{{imgPath}}' ></image>
+      </block>
+      <block wx:if="{{item.imgs.length==0}}">
+        未上传图片
+      </block>
+    </view>
+  </view>
+  <view class='item' >
+    <view class='lebal' >点检描述：</view>
+    <view class='content' >{{item.remarks}}</view>
+  </view>
+</view> 

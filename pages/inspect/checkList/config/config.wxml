@@ -1,0 +1,23 @@
+<template name="navTop" >
+  <view class='tab-h' >
+    <view class="tab-item {{currentTab==0?'active':''}}" bindtap="swichNav1">待点检设备</view>
+    <view class="tab-item {{currentTab==1?'active':''}}" bindtap="swichNav2">已完成点检</view>
+  </view>
+</template>
+
+
+ <template name="tabBar">
+  <view class='tabBar'>
+    <view class='tabBar_litem tabBar_left' bindtap='toIndex' >
+      <view class='item_icon' >
+        <image src='/images/home.png' ></image>
+      </view>
+    </view>
+    <view class='tabBar_litem tabBar_right' bindtap='toMe'>
+      <view class='item_icon' >
+        <image src='/images/me.png' ></image>
+      </view>
+    </view>
+  </view>
+</template> 
+

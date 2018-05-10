@@ -1,0 +1,29 @@
+<import src="/pages/inspect/inspectionList/config/config.wxml" />
+<view class='top_title ' >
+  <template is="navTop" data="{{currentTab}}" />
+
+  <swiper class="tab-content" current="0" duration="300" bindchange="switchTab" style="height:{{winHeight}}rpx">
+    <swiper-item>
+      <scroll-view scroll-y="true" bindscrolltolower="searchScrollLower" class="scoll-h">
+        <!-- <view class='item-none'  wx:if="{{itemsLength=='0'}}" >
+          ---- 暂无数据 ----
+        </view> -->
+          <view class="item-ans" bindtap='clickCheckInfo' data-id="1">
+            <view class="avatar">
+              <image class="img" src="/images/dian.png" catchtap='prev_img' data-url="/images/dian.png"></image>
+              <!-- <image class="img" wx:else src="/images/no_img.jpg" ></image> -->
+            </view>
+            <view class="expertInfo">
+              <view class="name">点检项目：计算机</view>
+              <view class="tag wait_tag ">所在场地：安徽省/芜湖市/弋江区</view>
+              <button class='evaluate_btn' catchtap='click_scan' data-id="1" data-asset-id="1">扫码填写</button>
+            </view>
+          </view>
+        <!-- <view class="item-list" wx:if="{{content=='0'}}" >----Duang ~ 到底了----</view> -->
+      </scroll-view>
+    </swiper-item>
+  </swiper>
+
+</view>
+
+<template is="tabBar" />

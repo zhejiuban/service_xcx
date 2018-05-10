@@ -1,0 +1,188 @@
+<!--pages/details/details.wxml-->
+<view style='padding-bottom:100rpx;' >
+  <view class='order_title' >工单详情</view>
+  <view class='list'>
+    <text class='list_label'>工单状态：</text>
+    <text class='list_value'>{{repair_status}}</text>
+  </view>
+  <view class='list' wx:if="{{repair_no}}" >
+    <text class='list_label'>工单编号：</text>
+    <text class='list_value'>{{repair_no}}</text>
+  </view>
+  <view class='list'>
+    <text class='list_label'>创建时间：</text>
+    <text class='list_value'>{{create_time}}</text>
+  </view>
+  <view wx:if="{{equipment_id}}" class='list'>
+    <text class='list_label'>设备组名称：</text>
+    <text class='list_value'>{{equipment_name}}</text>
+  </view>
+  <view class='list'>
+    <text class='list_label'>故障设备：</text>
+    <text class='list_value'>{{asset_name}}</text>
+  </view>
+  <view class='list'>
+    <text class='list_label'>所属单位：</text>
+    <text class='list_value'>{{org_name}}</text>
+  </view>
+  <view class='list'>
+    <text class='list_label'>所在场地：</text>
+    <text class='list_value'>{{field_path}}</text>
+  </view>
+  <view class='list-bewrite'>
+    <text>故障描述：</text>
+    <text class='bewrite'>{{remarks}}</text>
+  </view>
+  <view class='list'>
+    <text class='list_label'>图片拍摄：</text>
+    <block wx:if="{{img_url.length>0}}">
+      <view wx:for="{{img_url}}" wx:key="property">
+        <image src='{{item}}' data-url='{{item}}' bindtap='imgShow' mode='aspectFill'></image>
+      </view>
+    </block>
+    <block wx:else>
+      <text style='line-height:70rpx;' >暂无图片</text>
+    </block>
+  </view>
+  <view class='list'>
+    <text class='list_label'>报修人：</text>
+    <text class='list_value'>{{user_name}}</text>
+  </view>
+  <block wx:if="{{user_phone}}" >
+    <view class='list'>
+      <text class='list_label'>联系方式：</text>
+      <text class='list_value' catchtap='phoneCall' data-phone='{{user_phone}}'>{{user_phone}}</text>
+      <image src='/images/phone.png' catchtap='phoneCall' data-phone='{{user_phone}}' style='width:60rpx;height:60rpx;line-height:100rpx;' ></image>
+    </view>
+  </block>
+  <block wx:if="{{appointment}}" >
+    <view class='list'>
+      <text class='list_label'>预约服务时间：</text>
+      <text class='list_value'>{{appointment}}</text>
+    </view>
+  </block>
+
+  <!--维修人员信息  -->
+  <view wx:if="{{service_worker}}" >
+  <view class='order_title' >维修详情</view>
+    <view class='list'>
+      <text class='list_label'>维修人员：</text>
+      <text class='list_value'>{{service_worker}}</text>
+    </view>
+    <view class='list'>
+      <text class='list_label'>联系方式：</text>
+      <text catchtap='phoneCall' data-phone='{{worker_phone}}' class='list_value'>{{worker_phone}}</text>
+    <image src='/images/phone.png' catchtap='phoneCall' data-phone='{{worker_phone}}' style='width:60rpx;height:60rpx;line-height:100rpx;' ></image>
+    </view>
+    <block wx:if="{{method}}" >
+      <view class='list'>
+        <text class='list_label'>维修方式：</text>
+        <text class='list_value'>{{method==2?'远程协助维修':'上门维修'}}</text>
+      </view>
+    </block>
+    <block wx:if="{{sign_date}}" >
+      <view class='list'>
+        <text class='list_label'>签到时间：</text>
+        <text class='list_value'>{{sign_date}}</text>
+      </view>
+    </block>
+  </view>
+
+  <!--维修人员反馈信息  -->
+  <view wx:if="{{result}}" >
+    <view class='list'>
+      <text class='list_label'>维修结果：</text>
+      <text class='list_value'>{{result_status}}</text>
+    </view>
+    <view class='list'>
+      <text class='list_label'>完成时间：</text>
+      <text class='list_value'>{{finish_time}}</text>
+    </view>
+    <view class='list-bewrite'>
+      <text>反馈信息：</text>
+      <text class='bewrite' disabled>{{result}}</text>
+    </view>
+    <view class='list'>
+      <text class='list_label'>反馈图片：</text>
+      <block wx:if="{{service_img_url.length>0}}">
+        <view wx:for="{{service_img_url}}" wx:key="property">
+          <image src='{{item}}' data-url='{{item}}' bindtap='serviceImgShow' mode='aspectFill'></image>
+        </view>
+      </block>
+      <block wx:else>
+        <text style='line-height:70rpx;' >暂无图片</text>
+      </block>
+    </view>
+  </view>
+
+  <!--评价详情  -->
+  <view wx:if="{{stars_key}}" >
+    <view class='order_title' >评价详情</view>
+    <view class='list-bewrite'>
+      <view>评论时间：</view>
+      <text class='bewrite' name="evaluation_time" >{{evaluation_time}}</text>
+    </view>
+    <view class='section'>
+        <view class='section_title'>满意度:</view>
+        <view class='stars'>
+          <block wx:for="{{stars}}" wx:key="property">
+            <image class="star-image" mode='aspectFit' style="left: {{item*80}}rpx" src="{{stars_key > item ?(stars_key-item == 0.5?halfSrc:selectedSrc) : normalSrc}}">
+              <view class="item" data-key="{{item+1}}" bindtap="selectLeft"></view>
+              <view class="item" data-key="{{item+1}}" bindtap="selectRight"></view>
+            </image>
+          </block>
+        </view>
+    </view>
+    <view class='list-bewrite'>
+      <view>评论内容：</view>
+      <text class='bewrite' name="appraisal" >{{appraisal}}</text>
+    </view>
+  </view>
+
+  <view class='list' wx:if="{{service_status==2}}">
+    <text class='list_label'>维修方式：</text>
+    <radio-group class="radio-group list_value" bindchange="radioChange">
+      <label class="radio" wx:for="{{items}}" wx:key="property">
+        <radio value="{{item.code}}"/>{{item.name}}
+      </label>
+    </radio-group>
+  </view>
+
+</view>
+
+<!--上门维修 需要扫码 -->
+<block wx:if="{{service_status==2}}">
+
+  <view class='tabBar'>
+     
+    <view class='tabBar_litem' catchtap='confirm_repair' data-id="{{repair_id}}" data-order-status='1'>
+        接单
+    </view>
+    <view class='tabBar_litem' style='background-color:#e64340;' catchtap='refuse_repair' data-id="{{repair_id}}" data-order-status='2'>
+        拒单
+    </view> 
+  </view>
+</block>
+
+<!--上门维修 需要扫码 -->
+<block wx:elif="{{service_status==3 && method==1}}">
+  <view class="btn-area">
+    <button class='submitBtn' catchtap='click_scan' data-id="{{repair_id}}" data-asset-id="{{asset_id}}" data-area-id="{{area_id}}" data-equipment-id="{{equipment_id}}">
+        扫码反馈
+    </button>
+   </view> 
+</block>
+
+<block wx:elif="{{service_status==3 && method==2}}">
+  <view class="btn-area">
+    <button class='submitBtn' catchtap='click_help' data-id="{{repair_id}}" data-asset-id="{{asset_id}}" data-area-id="{{area_id}}" data-equipment-id="{{equipment_id}}">
+        填写维修结果
+    </button>
+  </view>
+</block>
+
+<block wx:else >
+  <view class="btn-area">
+    <button class='submitBtn' catchtap='to_processLog' data-id='{{repair_id}}'>查看日志</button>
+  </view> 
+</block>

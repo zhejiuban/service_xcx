@@ -1,0 +1,50 @@
+/* pages/serviceMode/serviceMode.wxss */
+.title{
+  text-align: center;
+  padding: 20rpx;
+  color: #666;
+  font-size: 40rpx;
+  font-weight: bolder;
+}
+
+.list {
+  display: flex;
+  flex-grow: row no-wrap;
+  padding: 10rpx 30rpx;
+  color: #666;
+  font-size: 28rpx;
+  border-bottom: 1rpx solid #eee;
+}
+
+.list-bewrite {
+  display: flex;
+  flex-grow: row no-wrap;
+  padding: 15rpx 30rpx;
+  color: #666;
+  font-size: 28rpx;
+  border-bottom: 1rpx solid #eee;
+}
+
+.list_label {
+  line-height: 70rpx;
+}
+
+.list_value {
+  line-height: 70rpx;
+}
+
+.btn-area {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.btn-area>button {
+  color: #fff;
+  background-color: #4898fa;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 32rpx;
+  border: none;
+  border-radius: 0;
+}

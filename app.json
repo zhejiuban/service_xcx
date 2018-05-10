@@ -1,0 +1,38 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/serviceMode/serviceMode",
+    "pages/refuseDetail/refuseDetail",
+    "pages/repairAssignList/repairAssignList",
+    "pages/repairAssign/repairAssign",
+    "pages/serviceLog/serviceLog",
+    "pages/login/login",
+    "pages/phone/phone",
+    "pages/index/service/service",
+    "pages/index/assess/assess",
+    "pages/index/over/over",
+    "pages/index/all/all",
+    "pages/result/result",
+    "pages/alldetails/alldetails",
+    "pages/refuse/refuse",
+    "pages/me/me",
+    "pages/inspect/checkList/config/config",
+    "pages/inspect/checkList/service/service",
+    "pages/inspect/checkList/over/over",
+    "pages/inspect/checkList/checkInfo/checkInfo",
+    "pages/inspect/checkList/checkRecord/checkRecord",
+    "pages/inspect/checkList/recordList/recordList",
+    "pages/inspect/checkList/recordInfo/recordInfo",
+    "pages/inspect/inspectionList/config/config",
+    "pages/inspect/inspectionList/service/service",
+    "pages/inspect/inspectionList/over/over",
+    "pages/inspect/inspectionList/inspectionInfo/inspectionInfo",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "这就办维修平台",
+    "navigationBarTextStyle": "black"
+  }
+}
