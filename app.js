@@ -13,6 +13,86 @@ App({
 
   getUserInfo: function () {
     let that = this;
+    wx.login({
+      success: res => {
+        let code = res.code;
+        //登录授权
+        wx.request({
+          url: config.workerLoginUrl,
+          method: "POST",
+          header: {
+            'content-type': 'application/json' // 默认值
+          },
+          data: {
+            token: that.globalData.token,
+            code: code,
+            iv: null,
+            encryptedData: null
+          },
+          success: function (res) {
+            that.globalData.userInfo = res.data;
+            that.globalData.openId = res.data.openId;
+            that.globalData.unionid = res.data.unionId;
+            //判断有没有验证身份
+            if (res.data.code == 0) {
+              wx.showModal({
+                title: '提示',
+                content: res.data.message,
+                showCancel: false,
+                success: function (res) {
+                  if (res.confirm) {
+                    wx.navigateBack({
+                      delta: -1
+                    })
+                  }
+                }
+              })
+            } else if (res.data.code == 1403) {
+              that.errorPrompt(res.data);
+            } else {
+              wx.request({
+                url: config.phoneAuthorizeUrl,
+                method: "POST",
+                header: {
+                  'content-type': 'application/json' // 默认值
+                },
+                data: {
+                  role: that.globalData.role,    //用户角色
+                  token: that.globalData.token,
+                  openId: that.globalData.openId
+                },
+                success: function (res) {
+                  // 判断是否为服务商管理员
+                  that.globalData.service_provider_admin = res.data.service_provider_admin;
+                  if (res.data.code == 0) {
+                    //暂未授权，跳转至授权绑定手机号页面
+                    wx.reLaunch({
+                      url: "/pages/phone/phone"
+                    });
+                  } else if (res.data.code == 1403) {
+                    that.errorPrompt(res.data);
+                  } else {
+                    // 已授权绑定手机号
+                    wx.reLaunch({
+                      url: "/pages/index/service/service"
+                    });
+                  }
+                },
+                fail: function () {
+                  that.requestError();
+                }
+              });
+            }
+          },
+          fail: function () {
+            that.requestError();
+          }
+        });
+      }
+    })
+  },
+  /*getUserInfo: function () {
+    let that = this;
     wx.getSetting({
       success: res => {
         let scope_user = res.authSetting['scope.userInfo'];
@@ -129,7 +209,7 @@ App({
         })
       }
     })
-  },
+  },*/
 
   globalData: {
     userInfo: null,

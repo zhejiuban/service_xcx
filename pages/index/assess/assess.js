@@ -118,7 +118,7 @@ Page({
     that.setData({
       page: 1
     });
-    that.onLoad();
+    //that.onLoad();
   },
 
   click_scan: function (e) {
