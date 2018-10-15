@@ -94,7 +94,8 @@ Page({
               area_id: data[i].area_id,
               equipment_id: data[i].equipment_id,
               method: data[i].method,
-              sign_date: data[i].sign_date
+              sign_date: data[i].sign_date,
+              org: data[i].org
             };
           }
           that.setData({
@@ -525,6 +526,7 @@ Page({
 
   //下拉刷新
   onPullDownRefresh: function () {
+    // console.log(1);
     wx.showNavigationBarLoading() //在标题栏中显示加载
     let that = this;
     wx.request({
@@ -570,7 +572,8 @@ Page({
               area_id: data[i].area_id,
               equipment_id: data[i].equipment_id,
               method: data[i].method,
-              sign_date: data[i].sign_date
+              sign_date: data[i].sign_date,
+              org: data[i].org
             };
           }
           that.setData({
@@ -591,6 +594,7 @@ Page({
   //上拉加载更多 
   //滚动到底部触发事件  
   searchScrollLower: function () {
+    console.log(12);
     let that = this;
     wx.showLoading();
     wx.request({
@@ -623,12 +627,23 @@ Page({
           let arr = [];
           let data = res.data;
           for (var i = 0; i < data.length; i++) {
-            arr[i] = [[data[i].img_url], data[i].name, data[i].path, data[i].repair_id];
+            arr[i] = {
+              img_url: data[i].img_url,
+              name: data[i].name,
+              path: data[i].path,
+              repair_id: data[i].repair_id,
+              asset_id: data[i].asset_id,
+              area_id: data[i].area_id,
+              equipment_id: data[i].equipment_id,
+              method: data[i].method,
+              sign_date: data[i].sign_date,
+              org: data[i].org
+            };
           }
           let arr1 = that.data.items;
           let arrs = arr1.concat(arr);
           that.setData({
-            items: arrs,
+            items: arr,
             page: that.data.page + 1
           });
         }

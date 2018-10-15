@@ -17,14 +17,14 @@ Page({
   onLoad: function (options) {
     let that = this;
     if (options.type != 1) {
-      console.log('h_load')
-      console.log(options.type)
+      // console.log('h_load')
+      // console.log(options.type)
       wx.showLoading({
         mask: true,
         title: '加载中',
       });
       app.globalData.firstLogin = 2;
-      console.log(app.globalData)
+      // console.log(app.globalData)
     }
   },
 
@@ -32,7 +32,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    console.log('h_ready')
+    // console.log('h_ready')
     let that = this;
     that.setData({
       btnShow: app.globalData.btnShow
@@ -69,8 +69,8 @@ Page({
     })
   },
   onGetUserInfo: function (e) {
-    console.log(e.detail.errMsg)
-    console.log(e.detail.rawData)
+    // console.log(e.detail.errMsg)
+    // console.log(e.detail.rawData)
     if (e.detail.userInfo != undefined) {
       app.getUserInfo();
     }

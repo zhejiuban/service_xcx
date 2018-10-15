@@ -2,6 +2,7 @@
 <view class='title'>拒单原因</view>
 <form bindsubmit="formSubmit" bindreset="formReset">
   <view class='section'>
+    <view>拒单原因：</view>
     <picker bindchange="bindPickerChangeRefuse" value="{{index}}" range="{{refuse}}">
       <view class="picker">
         {{refuse[index]}}
@@ -9,7 +10,7 @@
     </picker>
   </view>
    <view class='section_remarks'> 
-    <textarea class='remarks' name="order_reason" placeholder='拒单原因' ></textarea>
+    <textarea class='remarks' name="order_reason" placeholder='其他原因说明' ></textarea>
   </view>
   <view class="btn-area">
     <button class='submitBtn' formType="submit">提交</button>

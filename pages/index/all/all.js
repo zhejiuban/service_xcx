@@ -155,7 +155,14 @@ Page({
           let arr = [];
           let data = res.data;
           for (var i = 0; i < data.length; i++) {
-            arr[i] = [[data[i].img_url], data[i].name, data[i].path, data[i].repair_id];
+            arr[i] = [
+              [data[i].img_url], 
+              data[i].name, 
+              data[i].path, 
+              data[i].repair_id, 
+              data[i].processLog_id,
+              data[i].org
+            ];
           }
           that.setData({
             items: arr,
@@ -194,7 +201,8 @@ Page({
           let arr = [];
           let data = res.data;
           for (var i = 0; i < data.length; i++) {
-            arr[i] = [[data[i].img_url], data[i].name, data[i].path, data[i].repair_id];
+            arr[i] = [[data[i].img_url], data[i].name, data[i].path, data[i].repair_id,
+            data[i].processLog_id,data[i].org];
           }
           let arr1 = that.data.items;
           let arrs = arr1.concat(arr);
@@ -279,8 +287,11 @@ Page({
           let arr = [];
           let data = res.data;
           for (var i = 0; i < data.length; i++) {
-            arr[i] = [[data[i].img_url], data[i].name, data[i].path, data[i].repair_id, data[i].processLog_id];
+            arr[i] = [[data[i].img_url], data[i].name, data[i].path, data[i].repair_id, 
+            data[i].processLog_id,
+              data[i].org];
           }
+          console.log(res.data);
           that.setData({
             items: arr,
             itemsLength: '1'

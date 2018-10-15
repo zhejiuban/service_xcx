@@ -15,6 +15,7 @@ Page({
     halfSrc: '../../images/half.png',
 
     //工单详情
+    all_info: null,
     repair_id: '',
     repair_no: '',
     asset_id: '',
@@ -551,6 +552,7 @@ Page({
         }
         let data = res.data;
         that.setData({
+          all_info: data,
           repair_id: data.repair_id,
           repair_no: data.repair_no ? data.repair_no : '',
           asset_id: data.asset_id,
@@ -644,6 +646,7 @@ Page({
         } else {
           let data = res.data;
           that.setData({
+            all_info: data,
             repair_id: data.repair_id,
             repair_no: data.repair_no ? data.repair_no:'',
             asset_id: data.asset_id,

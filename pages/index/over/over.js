@@ -102,6 +102,7 @@ Page({
 
   //下拉刷新
   onPullDownRefresh: function () {
+    // console.log(1);
     wx.showNavigationBarLoading() //在标题栏中显示加载
     let that = this;
     wx.request({
@@ -138,8 +139,15 @@ Page({
           let arr = [];
           let data = res.data;
           for (var i = 0; i < data.length; i++) {
-            arr[i] = [[data[i].img_url], data[i].name, data[i].path, data[i].repair_id];
+            arr[i] = [
+              [data[i].img_url], 
+              data[i].name, 
+              data[i].path, 
+              data[i].repair_id,
+              data[i].org
+            ];
           }
+          console.log(res.data);
           that.setData({
             items: arr,
             page: 1,
@@ -158,6 +166,7 @@ Page({
   //上拉加载更多 
   //滚动到底部触发事件  
   searchScrollLower: function () {
+    // console.log(1);
     let that = this;
     wx.showLoading();
     wx.request({
@@ -178,7 +187,11 @@ Page({
           let arr = [];
           let data = res.data;
           for (var i = 0; i < data.length; i++) {
-            arr[i] = [[data[i].img_url], data[i].name, data[i].path, data[i].repair_id];
+            arr[i] = [[data[i].img_url], data[i].name, 
+              data[i].path, 
+              data[i].repair_id,
+              data[i].org
+            ];
           }
           let arr1 = that.data.items;
           let arrs = arr1.concat(arr);
@@ -267,7 +280,13 @@ Page({
           let arr = [];
           let data = res.data;
           for (var i = 0; i < data.length; i++) {
-            arr[i] = [[data[i].img_url], data[i].name, data[i].path, data[i].repair_id];
+            arr[i] = [
+              [data[i].img_url], 
+              data[i].name, 
+              data[i].path, 
+              data[i].repair_id,
+              data[i].org
+            ];
           }
           that.setData({
             items: arr,
